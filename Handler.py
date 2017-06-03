@@ -45,7 +45,7 @@ class DiscordHandler(logging.StreamHandler):
         
         
 def test():
-    url = "https://discordapp.com/api/webhooks/320293246213554178/oMqpuCQDZvI8ww2CaJbc4d42c18YpJkEp-GdWbBPA6X25lgPugyCFzY_DXEhza5RKGSI"
+    url =""
     agent = "Feuerwehr App"
 
     level = logging.DEBUG
