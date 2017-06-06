@@ -1,6 +1,7 @@
 # DiscordHandler
 
-This class is using the integreted logging class from Python and requests from PyPi.
+This class is using the integrated logging class from Python and requests from PyPi. 
+Feel free to change and add some good stuff.
 
 ## Requirements
 Installing requests:
@@ -8,10 +9,10 @@ Installing requests:
 pip install requests
 ```
 
-Exampels:
-```
+## Exampel:
+```python
 
-    webhook_url = "https://discordapp.com/api/webhooks/320535235668475915/1TWBsLS0dpEyouQYq161huqVKUxDw3bvsS-ns8fzWJhMlp-HZEmcafWt-cKOnZy2UMbR"
+    webhook_url = "Your Webhook here"
     agent = "My Application"
 
     logger = logging.getLogger("My Application")
