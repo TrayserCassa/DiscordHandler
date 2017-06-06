@@ -4,12 +4,13 @@ import json
 headers = {
 
     'User-Agent': "FeuerwehrApp",
-    
+
     "Content-Type": "application/json"
 
 }
 
 url = ""
+
 
 def send_message(message):
     content = json.dumps({"content": message})
