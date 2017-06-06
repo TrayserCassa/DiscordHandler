@@ -36,16 +36,21 @@ class DiscordHandler(logging.Handler):
 
     def write_to_discord(self, message):
         content = json.dumps({"content": message})
+
         request = requests.post(self._url,
                                 headers=self._header,
                                 data=content)
 
+        if request.status_code == 404:
+            raise requests.exceptions.InvalidURL(
+                "This URL seams wrong... Response = %s" % request.text)
+
         if request.ok == False:
-            raise request.Exception("Request not successful")
+            raise requests.exceptions.HTTPError(
+                "Request not successful... Code = %s, Message = %s" % request.status_code, request.text)
 
     def emit(self, record):
         try:
-            print(record)
             msg = self.format(record)
             self.write_to_discord("```%s```" % msg)
         except Exception:
