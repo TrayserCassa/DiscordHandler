@@ -55,33 +55,3 @@ class DiscordHandler(logging.Handler):
             self.write_to_discord("```%s```" % msg)
         except Exception:
             self.handleError(record)
-
-
-def test():
-    url = ""
-    agent = ""
-
-    level = logging.DEBUG
-    log_format = logging.Formatter(
-        "[%(filename)s]{%(funcName)s L %(lineno)d} --- %(message)s"
-    )
-
-    logger = logging.getLogger('spam_application')
-    logger.setLevel(level)
-    file_handler = DiscordHandler(url, agent)
-    file_handler.setFormatter(log_format)
-    file_handler.set_name("file")
-    file_handler.setLevel(level)
-    logger.addHandler(file_handler)
-
-    streamHandler = logging.StreamHandler()
-    streamHandler.setFormatter(log_format)
-    streamHandler.set_name("strema")
-    streamHandler.setLevel(level)
-    logger.addHandler(streamHandler)
-
-    logger.info("testing info")
-
-
-if __name__ == "__main__":
-    test()
