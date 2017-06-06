@@ -1,6 +1,7 @@
 # DiscordHandler
 
 This class is using the integrated logging class from Python and [requests](http://docs.python-requests.org/en/master/) from PyPi. 
+
 Feel free to change and add some good stuff.
 
 ## Requirements
@@ -8,6 +9,12 @@ Installing requests:
 ```
 pip install requests
 ```
+
+## Get Started:
+
+First u need Discord or some Channels, where u have access to create a new Webhook.
+
+You find Webhooks options in the channel settings. Create a new Webhook and copy the __Webhook url__. Note: Do NOT give this URL out to the public like me in previous commits. (I changed it :P )
 
 ## Exampel:
 ```python
