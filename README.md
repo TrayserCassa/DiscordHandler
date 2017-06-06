@@ -1,6 +1,6 @@
 # DiscordHandler
 
-This class is using the integrated logging class from Python and requests from PyPi. 
+This class is using the integrated logging class from Python and [requests](http://docs.python-requests.org/en/master/) from PyPi. 
 Feel free to change and add some good stuff.
 
 ## Requirements
@@ -40,3 +40,5 @@ pip install requests
 
     logger.debug("Logger created")
 ```
+
+For more Infos: [Logging Cookbook](https://docs.python.org/3/howto/logging-cookbook.html)
