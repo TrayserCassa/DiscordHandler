@@ -20,7 +20,7 @@ You can test the logging class by using the [Test file](test.py).
 
 If u want to know, how to send messages via POST and [requests](http://docs.python-requests.org/en/master/) to Discord you can see an example in [Discord file](send_discord.py). 
 
-## Exampel:
+## Example:
 ```python
 
     webhook_url = "Your Webhook here"
