@@ -17,11 +17,11 @@ class DiscordHandler(logging.Handler):
     def __init__(self, webhook_url, agent):
         logging.Handler.__init__(self)
 
-        if webhook_url is None:
-            raise ValueError("webhook_url parameter must be given!")
+        if webhook_url is None or webhook_url == "":
+            raise ValueError("webhook_url parameter must be given and can not be empty!")
 
-        if agent is None:
-            raise ValueError("agent parameter must be given!")
+        if agent is None or agent == "":
+            raise ValueError("agent parameter must be given and can not be empty!")
 
         self._url = webhook_url
         self._agent = agent
