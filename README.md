@@ -12,15 +12,15 @@ pip install requests
 
 ## Get Started:
 
-First u need Discord or some Channels, where u have access to create a new Webhook.
+First you need Discord or some Channels, where you have access to create a new Webhook.
 
-You find Webhooks options in the channel settings. Create a new Webhook and copy the __Webhook url__. Note: Do NOT give this URL out to the public like me in previous commits. (I changed it :P )
+You find Webhooks options in the channel settings. Create a new Webhook and copy the __Webhook Url__. Note: Do NOT give this URL out to the public like me in previous commits. (I changed it :P )
 
 You can test the logging class by using the [Test file](test.py). 
 
 If u want to know, how to send messages via POST and [requests](http://docs.python-requests.org/en/master/) to Discord you can see an example in [Discord file](send_discord.py). 
 
-## Exampel:
+## Example:
 ```python
 
     webhook_url = "Your Webhook here"
@@ -37,7 +37,7 @@ If u want to know, how to send messages via POST and [requests](http://docs.pyth
     discord_handler = DiscordHandler(webhook_url, agent)
     stream_handler = logging.StreamHandler()
 
-    # Set log level to handlers
+    # Add log level to handlers
     discord_handler.setLevel(logging.WARNING)
     stream_handler.setLevel(logging.DEBUG)
 
