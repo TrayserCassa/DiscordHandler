@@ -1,5 +1,6 @@
 import logging
 import json
+from socket import gethostname
 
 try:
     import requests
@@ -14,14 +15,14 @@ class DiscordHandler(logging.Handler):
     to a Discord Server using webhooks.
     """
 
-    def __init__(self, webhook_url, agent):
+    def __init__(self, webhook_url, agent=None):
         logging.Handler.__init__(self)
 
         if webhook_url is None or webhook_url == "":
             raise ValueError("webhook_url parameter must be given and can not be empty!")
 
         if agent is None or agent == "":
-            raise ValueError("agent parameter must be given and can not be empty!")
+            agent = gethostname()
 
         self._url = webhook_url
         self._agent = agent
