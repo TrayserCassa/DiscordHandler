@@ -15,7 +15,7 @@ class DiscordHandler(logging.Handler):
     to a Discord Server using webhooks.
     """
 
-    def __init__(self, webhook_url, agent=None):
+    def __init__(self, webhook_url, agent=None, notify_users=None):
         logging.Handler.__init__(self)
 
         if webhook_url is None or webhook_url == "":
@@ -24,6 +24,10 @@ class DiscordHandler(logging.Handler):
         if agent is None or agent == "":
             agent = gethostname()
 
+        if notify_users is None:
+            notify_users = []
+
+        self._notify_users = notify_users
         self._url = webhook_url
         self._agent = agent
         self._header = self.create_header()
@@ -53,6 +57,10 @@ class DiscordHandler(logging.Handler):
     def emit(self, record):
         try:
             msg = self.format(record)
-            self.write_to_discord("```%s```" % msg)
+            users = ''
+            for user in self._notify_users:
+                users = '<@%s>\n%s' % (user, users)
+
+            self.write_to_discord("```%s```%s" % (msg, users))
         except Exception:
             self.handleError(record)
