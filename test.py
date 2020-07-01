@@ -23,7 +23,7 @@ def create_logger():
         "%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
     # Create DiscordHandler and StreamHandler
-    notify_users = ['2725_and_more_numbers']
+    notify_users = ['everyone']
     discord_handler = DiscordHandler(webhook_url, agent, notify_users=notify_users)
     stream_handler = logging.StreamHandler()
 
