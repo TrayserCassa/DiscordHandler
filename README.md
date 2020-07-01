@@ -34,7 +34,9 @@ If u want to know, how to send messages via POST and [requests](http://docs.pyth
         "%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
     # Create DiscordHandler and StreamHandler
-    discord_handler = DiscordHandler(webhook_url, agent)
+    # This will mention everyone. You can use your id here for private mentions.
+    notify_users = ['everyone']
+    discord_handler = DiscordHandler(webhook_url, agent, notify_users=notify_users)
     stream_handler = logging.StreamHandler()
 
     # Add log level to handlers
