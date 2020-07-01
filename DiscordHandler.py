@@ -19,7 +19,9 @@ class DiscordHandler(logging.Handler):
         logging.Handler.__init__(self)
 
         if webhook_url is None or webhook_url == "":
-            raise ValueError("webhook_url parameter must be given and can not be empty!")
+            raise ValueError(
+                "webhook_url parameter must be given and can not be empty!"
+            )
 
         if agent is None or agent == "":
             agent = gethostname()
@@ -50,9 +52,11 @@ class DiscordHandler(logging.Handler):
             raise requests.exceptions.InvalidURL(
                 "This URL seams wrong... Response = %s" % request.text)
 
-        if request.ok == False:
+        if request.ok is False:
             raise requests.exceptions.HTTPError(
-                "Request not successful... Code = %s, Message = %s" % request.status_code, request.text)
+                "Request not successful... Code = %s, Message = %s"
+                % request.status_code, request.text
+            )
 
     def emit(self, record):
         try:
