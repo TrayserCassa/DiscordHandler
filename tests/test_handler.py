@@ -1,8 +1,9 @@
 import logging
-from DiscordHandler import DiscordHandler
+from discord_handler import DiscordHandler
 
+def test_main():
+    create_logger()
 
-def main():
     logger = logging.getLogger("My Application")
     logger.info("This is a Info")
     logger.warning("This is a Warning")
@@ -12,7 +13,7 @@ def main():
 
 
 def create_logger():
-    webhook_url = "https://discordapp.com/api/webhooks/322137744224681984/RiMBt_rczJBenutdYetPeADhGLsahstswZ0KVZZN7pIxN1clLrpSqcbo5GcR49StO22p"
+    webhook_url = "https://discord.com/api/webhooks/660442991193882645/635RhpxqPCqavVWiXlFbtaxgSs3_5cCoSR3fdh94QY_pLz3DkbqNy3rZkcgHQRSiewJw"  
     agent = "My Application"
 
     logger = logging.getLogger("My Application")
@@ -40,8 +41,3 @@ def create_logger():
     logger.addHandler(stream_handler)
 
     logger.debug("Logger created")
-
-
-if __name__ == "__main__":
-    create_logger()
-    main()
