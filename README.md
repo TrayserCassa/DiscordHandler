@@ -16,9 +16,9 @@ First you need Discord or some Channels, where you have access to create a new W
 
 You find Webhooks options in the channel settings. Create a new Webhook and copy the __Webhook Url__. Note: Do NOT give this URL out to the public like me in previous commits. (I changed it :P )
 
-You can test the logging class by using the [Test file](test.py). 
+You can test the logging class by using the [Test file](tests/test_handler.py). 
 
-If u want to know, how to send messages via POST and [requests](http://docs.python-requests.org/en/master/) to Discord you can see an example in [Discord file](send_discord.py). 
+If u want to know, how to send messages via POST and [requests](http://docs.python-requests.org/en/master/) to Discord you can see an example in [Discord file](example/send_discord.py). 
 
 ## Mentions:
 
