@@ -28,6 +28,8 @@ To get your user id you need to activate the developer mode and right click on y
 ## Example:
 ```python
 
+    from discord_handler import DiscordHandler
+
     webhook_url = "Your Webhook here"
     agent = "My Application"
 
