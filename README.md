@@ -4,6 +4,13 @@ This class is using the integrated logging class from Python and [requests](http
 
 Feel free to change and add some good stuff.
 
+## Installing
+
+Install and update using pip:
+```
+pip install discord-handler
+```
+
 ## Requirements
 Installing requests:
 ```
