@@ -1,5 +1,4 @@
 import logging
-import json
 from socket import gethostname
 
 try:
@@ -18,12 +17,12 @@ class DiscordHandler(logging.Handler):
     def __init__(self, webhook_url, agent=None, notify_users=None):
         logging.Handler.__init__(self)
 
-        if webhook_url is None or webhook_url == "":
+        if not webhook_url:
             raise ValueError(
                 "webhook_url parameter must be given and can not be empty!"
             )
 
-        if agent is None or agent == "":
+        if not agent:
             agent = gethostname()
 
         if notify_users is None:
@@ -38,32 +37,32 @@ class DiscordHandler(logging.Handler):
     def create_header(self):
         return {
             'User-Agent': self._agent,
-            "Content-Type": "application/json"
         }
 
     def write_to_discord(self, message):
-        content = json.dumps({"content": message})
 
         request = requests.post(self._url,
                                 headers=self._header,
-                                data=content)
+                                data={
+                                    "content": message
+                                })
 
         if request.status_code == 404:
             raise requests.exceptions.InvalidURL(
-                "This URL seams wrong... Response = %s" % request.text)
+                "Discord WebHook URL returned status 404, is the URL correct?\n"
+                + "Response = %s" % request.text
+            )
 
-        if request.ok is False:
+        if not request.ok:
             raise requests.exceptions.HTTPError(
-                "Request not successful... Code = %s, Message = %s"
+                "Discord WebHook returned status code %s, Message = %s"
                 % request.status_code, request.text
             )
 
     def emit(self, record):
         try:
             msg = self.format(record)
-            users = ''
-            for user in self._notify_users:
-                users = '<@%s>\n%s' % (user, users)
+            users = '\n'.join(f'<@{user}>' for user in self._notify_users)
 
             self.write_to_discord("```%s```%s" % (msg, users))
         except Exception:
