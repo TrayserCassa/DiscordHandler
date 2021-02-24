@@ -13,7 +13,7 @@ def test_main():
 
 
 def create_logger():
-    webhook_url = "https://discord.com/api/webhooks/660442991193882645/635RhpxqPCqavVWiXlFbtaxgSs3_5cCoSR3fdh94QY_pLz3DkbqNy3rZkcgHQRSiewJw"  
+    webhook_url = "webhook url here"
     agent = "My Application"
 
     logger = logging.getLogger("My Application")
