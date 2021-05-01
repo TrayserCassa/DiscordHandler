@@ -49,8 +49,9 @@ To get your user id you need to activate the developer mode and right click on y
 
     # Create DiscordHandler and StreamHandler
     # This will mention everyone. You can use your id here for private mentions.
+    # Emits log as raw text, so strings can contain Discord markdown formatting such as __underline__ or **bold**
     notify_users = ['everyone']
-    discord_handler = DiscordHandler(webhook_url, agent, notify_users=notify_users)
+    discord_handler = DiscordHandler(webhook_url, agent, notify_users=notify_users, emit_as_code_block=False)
     stream_handler = logging.StreamHandler()
 
     # Add log level to handlers
