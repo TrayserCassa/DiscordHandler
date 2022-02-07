@@ -42,7 +42,7 @@ class DiscordHandler(logging.Handler):
         }
 
     def write_to_discord(self, message):
-        trimmed_message = message if self._max_size is None else message[:min(len(message), self._max_size)] + '...'
+        trimmed_message = message if self._max_size is None else (message[:min(len(message), self._max_size)] + '...')
         request = requests.post(self._url,
                                 headers=self._header,
                                 data={
