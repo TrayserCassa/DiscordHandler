@@ -42,11 +42,10 @@ class DiscordHandler(logging.Handler):
         }
 
     def write_to_discord(self, message):
-        trimmed_message = message if self._max_size is None else (message[:min(len(message), self._max_size)] + '...')
         request = requests.post(self._url,
                                 headers=self._header,
                                 data={
-                                    "content": trimmed_message
+                                    "content": message
                                 })
 
         if request.status_code == 404:
@@ -64,10 +63,11 @@ class DiscordHandler(logging.Handler):
     def emit(self, record):
         try:
             msg = self.format(record)
+            trimmed_msg = msg if self._max_size is None else (msg[:min(len(msg), self._max_size)] + '...')
             users = '\n'.join(f'<@{user}>' for user in self._notify_users)
             if self.emit_as_code_block:
-                self.write_to_discord("```%s```%s" % (msg, users))
+                self.write_to_discord("```%s```%s" % (trimmed_msg, users))
             else:
-                self.write_to_discord("%s %s" % (msg, users))
+                self.write_to_discord("%s %s" % (trimmed_msg, users))
         except Exception:
             self.handleError(record)
