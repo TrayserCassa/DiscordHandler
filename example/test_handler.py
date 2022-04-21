@@ -11,9 +11,11 @@ def test_main():
     logger.debug("This is a debug")
     logger.critical("This is a critical")
 
+    logger.error("This is a long message. " * 100)
+
 
 def create_logger():
-    webhook_url = "webhook url here"
+    webhook_url = ""
     agent = "My Application"
 
     logger = logging.getLogger("My Application")
@@ -25,7 +27,7 @@ def create_logger():
 
     # Create DiscordHandler and StreamHandler
     notify_users = ['everyone']
-    discord_handler = DiscordHandler(webhook_url, agent, notify_users=notify_users)
+    discord_handler = DiscordHandler(webhook_url, agent, notify_users=notify_users, max_size=500)
     stream_handler = logging.StreamHandler()
 
     # Set log level to handlers
@@ -41,3 +43,6 @@ def create_logger():
     logger.addHandler(stream_handler)
 
     logger.debug("Logger created")
+
+if __name__ == '__main__':
+    test_main()

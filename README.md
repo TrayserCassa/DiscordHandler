@@ -30,7 +30,7 @@ If u want to know, how to send messages via POST and [requests](http://docs.pyth
 ## Attention:
 Discord only allows 20 000 characters, so you might get trouble when using large messages. To limit
 the length of the message use `max_size` in the constructor. See Example below.
-Thanks to racinmat for the implementation.
+Thanks to @racinmat for the implementation.
 
 ## Mentions:
 
