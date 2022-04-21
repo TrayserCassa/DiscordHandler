@@ -27,6 +27,11 @@ You can test the logging class by using the [Test file](tests/test_handler.py).
 
 If u want to know, how to send messages via POST and [requests](http://docs.python-requests.org/en/master/) to Discord you can see an example in [Discord file](example/send_discord.py). 
 
+## Attention:
+Discord only allows 20 000 characters, so you might get trouble when using large messages. To limit
+the length of the message use `max_size` in the constructor. See Example below.
+Thanks to racinmat for the implementation.
+
 ## Mentions:
 
 To use mentions use the paramter notify_users. You can use __everyone__ without id and private mentions with id.
@@ -51,7 +56,7 @@ To get your user id you need to activate the developer mode and right click on y
     # This will mention everyone. You can use your id here for private mentions.
     # Emits log as raw text, so strings can contain Discord markdown formatting such as __underline__ or **bold**
     notify_users = ['everyone']
-    discord_handler = DiscordHandler(webhook_url, agent, notify_users=notify_users, emit_as_code_block=False)
+    discord_handler = DiscordHandler(webhook_url, agent, notify_users=notify_users, emit_as_code_block=False, max_size=20000)
     stream_handler = logging.StreamHandler()
 
     # Add log level to handlers
