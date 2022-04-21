@@ -28,9 +28,9 @@ You can test the logging class by using the [Test file](tests/test_handler.py).
 If u want to know, how to send messages via POST and [requests](http://docs.python-requests.org/en/master/) to Discord you can see an example in [Discord file](example/send_discord.py). 
 
 ## Attention:
-Discord only allows 20 000 characters, so you might get trouble when using large messages. To limit
+Discord only allows 2 000 characters, so you might get trouble when using large messages. To limit
 the length of the message use `max_size` in the constructor. See Example below.
-Thanks to @racinmat for the implementation.
+Thanks to [racinmat](https://github.com/racinmat) for the implementation.
 
 ## Mentions:
 
