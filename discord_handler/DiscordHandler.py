@@ -14,7 +14,7 @@ class DiscordHandler(logging.Handler):
     to a Discord Server using webhooks.
     """
 
-    def __init__(self, webhook_url, agent=None, notify_users=None, emit_as_code_block=True):
+    def __init__(self, webhook_url, agent=None, notify_users=None, emit_as_code_block=True, max_size=None):
         logging.Handler.__init__(self)
 
         if not webhook_url:
@@ -33,6 +33,7 @@ class DiscordHandler(logging.Handler):
         self._agent = agent
         self._header = self.create_header()
         self._name = ""
+        self._max_size = max_size
         self.emit_as_code_block = emit_as_code_block
 
     def create_header(self):
@@ -41,7 +42,6 @@ class DiscordHandler(logging.Handler):
         }
 
     def write_to_discord(self, message):
-
         request = requests.post(self._url,
                                 headers=self._header,
                                 data={
@@ -57,16 +57,17 @@ class DiscordHandler(logging.Handler):
         if not request.ok:
             raise requests.exceptions.HTTPError(
                 "Discord WebHook returned status code %s, Message = %s"
-                % request.status_code, request.text
+                % (request.status_code, request.text)
             )
 
     def emit(self, record):
         try:
             msg = self.format(record)
+            trimmed_msg = msg if self._max_size is None else (msg[:min(len(msg), self._max_size)] + '...')
             users = '\n'.join(f'<@{user}>' for user in self._notify_users)
             if self.emit_as_code_block:
-                self.write_to_discord("```%s```%s" % (msg, users))
+                self.write_to_discord("```%s```%s" % (trimmed_msg, users))
             else:
-                self.write_to_discord("%s %s" % (msg, users))
+                self.write_to_discord("%s %s" % (trimmed_msg, users))
         except Exception:
             self.handleError(record)

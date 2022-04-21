@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="discord_handler",
-    version="0.0.3",
+    version="0.0.4",
     author="Traysercassa",
     author_email="",
     description="A small discord handler for the logging module using webtokens",
